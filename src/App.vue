@@ -1,46 +1,33 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import {ref} from "vue";
+import {usePair} from "./store/module-pair.ts";
+import {onMounted, ref} from "vue";
 
-const show = ref<boolean>(true)
+const store = usePair()
+const arr = ref([])
+
+onMounted(store.getPair)
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="button-group">
+    <button @click="arr = store.response.teacher"> Get Groups</button>
+    <button @click="arr = store.response.group"> Get Teachers</button>
   </div>
-  <button @click="show=!show">fade</button>
-  <Transition name="fade">
-    <HelloWorld v-if="show" msg="Vite + Vue"/>
-  </Transition>
+  <transition-group tag="ul" name="list">
+      <li v-for="item in arr" :key="item">{{ item }}</li>
+  </transition-group>
+
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-/* we will explain what these classes do next! */
-.fade-enter-active,
-.fade-leave-active {
+.list-enter-active,
+.list-leave-active {
   transition: all 0.5s ease;
 }
-
-.fade-enter-from,
-.fade-leave-to {
+.list-enter-from,
+.list-leave-to {
   opacity: 0;
+  transform: translateX(30px);
 }
 </style>
