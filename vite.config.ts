@@ -7,7 +7,16 @@ export default defineConfig({
   plugins: [
       vue(),
     VitePWA({
-      registerType: 'autoUpdate'
+      manifest:{
+        icons:[
+          {
+            src: '/icons/100x100.jpg',
+            sizes: '100x100',
+            type: 'image/jpg',
+            purpose: 'any maskable'
+          }
+        ]
+      }
     })
   ],
 })
