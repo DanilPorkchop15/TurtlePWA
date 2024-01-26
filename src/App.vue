@@ -3,7 +3,7 @@ import {usePair} from "./store/module-pair.ts";
 import {onMounted, ref} from "vue";
 
 const store = usePair()
-const arr = ref([])
+const arr = ref<string[]>()
 
 onMounted(store.getPair)
 
@@ -28,6 +28,6 @@ onMounted(store.getPair)
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateY(30px);
 }
 </style>
