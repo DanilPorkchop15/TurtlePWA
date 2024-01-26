@@ -11,8 +11,8 @@ onMounted(store.getPair)
 
 <template>
   <div class="button-group">
-    <button @click="arr = store.response.teacher"> Get Groups</button>
-    <button @click="arr = store.response.group"> Get Teachers</button>
+    <button @click="arr = store.response.teacher"> Get Teacher</button>
+    <button @click="arr = store.response.group"> Get Group</button>
   </div>
   <transition-group tag="ul" name="list">
       <li v-for="item in arr" :key="item">{{ item }}</li>
